@@ -2,12 +2,12 @@
 <body>
 {{#al2}}
 <input type="hidden" value="{{id}}" name="id"/>
-<a href="/?={{id}}">{{firstName}} {{lastName}}</a><br>
+<a href="/person?id={{id}}">{{firstName}} {{lastName}}</a><br>
 
 {{/al2}}
 
-
 <br>
-<a href="/?offset={{nextSet}}">Next</a>
+<br>
+{{>footer}}
 </body>
 </html>

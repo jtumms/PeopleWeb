@@ -1,4 +1,23 @@
+{{#isFirst}}
+<a href="/?offset={{nextSet}}">Next</a>
+{{/isFirst}}
+
+{{^isFirst}}
+{{/isFirst}}
 
 
 
-a href="/?offset={{al2.}}">Next</a><br>
+{{#theRest}}
+<a href="/?offset={{prevSet}}">Previous</a>
+<a href="/?offset={{nextSet}}">Next</a>
+{{/theRest}}
+
+{{^theRest}}
+{{/theRest}}
+
+
+
+
+
+
+
