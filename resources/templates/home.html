@@ -1,11 +1,13 @@
 <html>
 <body>
-{{#people}}
+{{#al2}}
+<input type="hidden" value="{{id}}" name="id"/>
 <a href="/?={{id}}">{{firstName}} {{lastName}}</a><br>
 
-{{/people}}
+{{/al2}}
 
 
-
+<br>
+<a href="/?offset={{nextSet}}">Next</a>
 </body>
 </html>

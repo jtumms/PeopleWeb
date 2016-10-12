@@ -12,7 +12,8 @@ import java.util.Scanner;
 
 public class Main {
     static ArrayList<Person> people = new ArrayList<>();
-    //static HashMap<Integer, Person> peopleHash = new HashMap();
+
+
 
 
 
@@ -25,21 +26,38 @@ public class Main {
             String[] fileSplit = fileContent.split("\\,");
             Person person = new Person(Integer.valueOf(fileSplit[0]), fileSplit[1], fileSplit[2], fileSplit[3], fileSplit[4], fileSplit[5]);
             people.add(person);
-            //peopleHash.put(person.id, person);
-
 
         }
 
         Spark.get(
                 "/",
                 (request, response) -> {
-                    String idWorking = request.queryParams("id");
+                    String offset = request.queryParams("offset");
+                    if (offset == null){
+                        offset = "20";
+                    }
+                    int nextSet = Integer.valueOf(offset) + 20;
+
                     HashMap m = new HashMap();
-                    m.put("people", people);
+                    ArrayList<Person> al2 = new ArrayList<Person>();
+                    for (Person person : people){
+                        if (person.id >= Integer.valueOf(offset) - 19  && person.id <= Integer.valueOf(offset)){
+                            al2.add(person);
+                        }
+                    }
+
+
+                    m.put("al2", al2);
+                    m.put("offset", offset);
+                    m.put("nextSet", nextSet);
+
+
                     return new ModelAndView(m, "home.html");
                 },
                 new MustacheTemplateEngine()
         );
+
+
     }
 
 }
